@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Flipper | Ethereum Flippening Dashboard</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div id="container" class="container">
+    <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+
+            <li role="presentation"><a href="https://reddit.com/u/malefizer">u/malefizer</a></li>
+          </ul>
+        </nav>
+        <h3 class="text">Flipper</h3>
+      </div>
+
+		<div id="content" class="jumbotron">
+      <h2><strong>Does it flip?</strong></h2>
+
+      <h2>ETH: <span id="display_eth_marcap" class="number"> </span><h2>
+      <h2 class="">BTC: <span id="display_btc_marcap" class="number"> </span><h2>
+
+      <h1>ETH/BTC <strong>~<span id="display_ethbtc_pc"> </span>%</strong> <h1>
+      <p class="text-muted">or more precise <span id="display_ethbtc_ratio" class="number"></span><p>
+
+		</div>
+
+		<div id="footer">
+      <div class="col-lg-4">
+        <img src="./dolphin.png" class="img-rounded">
+      </div>
+
+		</div>
+
+
+	</div>
+
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+  </script>
+	<script type="text/javascript" >
+    url = "https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v1/ticker/?limit=3";
+
+    function doPoll(){
+        $.get(url, function(data) {
+            console.log(data);  // process results here
+            jsondata = data;
+            btc_marcap = Number((jsondata).filter((i,n) => i.id==="bitcoin")[0].market_cap_usd);
+            eth_marcap = Number((jsondata).filter((i,n) => i.id==="ethereum")[0].market_cap_usd);
+            $('#display_btc_marcap').html(btc_marcap);
+            $('#display_eth_marcap').html(eth_marcap);
+            const ethbtc = eth_marcap / btc_marcap;
+            const ethbtcpercent = Math.round(ethbtc * 100);
+            $('#display_ethbtc_pc').html(ethbtcpercent);
+            $('#display_ethbtc_ratio').html(ethbtc);
+            setTimeout(doPoll,5000);
+
+            $('.number').text(function () {
+                var str = $(this).html() + '';
+                x = str.split('.');
+                x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : '';
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(x1)) {
+                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                }
+                $(this).html(x1 + x2);
+            });
+        });
+    }
+    doPoll();
+  </script>
+</body>
+</html>
