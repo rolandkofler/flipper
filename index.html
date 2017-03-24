@@ -2,9 +2,10 @@
 <html>
 <head>
 
-	<title>Flipper | Ethereum Flippening Dashboard</title>
+	<title>Flipper | Watchening Ethereum Flippening Happening</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -21,20 +22,33 @@
       </div>
 
 		<div id="content" class="jumbotron">
+
       <h2><strong>Does it flip?</strong></h2>
 
-      <h2>ETH: <span id="display_eth_marcap" class="number"> </span> USD<h2>
-      <h2 class="">BTC: <span id="display_btc_marcap" class="number"> </span> USD<h2>
+      <h2>ETH: <span class="text-right"><span id="display_eth_marcap" class="number"> </span> USD</span></h2>
+      <h2>BTC: <span class="text-right"><span id="display_btc_marcap" class="number"> </span> USD</span></h2>
 
       <h1>ETH/BTC <strong>~<span id="display_ethbtc_pc"> </span>%</strong> <h1>
       <p class="text-muted">or more precise <span id="display_ethbtc_ratio" class="number"></span></p>
-      <p><small>live data source: coinmarketcap.com updates every 1m<small></p>
+      <p><small>live data source: coinmarketcap.com, updates every 1m<small></p>
+
+
 		</div>
 
 		<div id="footer">
-      <div class="col-lg-4">
-        <img src="./dolphin.png" class="img-rounded">
+      <div class="col-lg-6">
+        <img src="./dolphin.png" class="img-rounded img-responsive">
       </div>
+
+			<div class="col-lg-6">
+				<div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Reverse History of Ratios</div>
+        <!-- List group -->
+        <ul id="events" class="list-group">
+        </ul>
+      </div>
+			</div>
 
 		</div>
 
@@ -47,6 +61,7 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous">
   </script>
+	<script src="//d3js.org/d3.v4.min.js"></script>
 	<script type="text/javascript" >
     url = "https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v1/ticker/?limit=3";
 
@@ -74,9 +89,12 @@
                 }
                 $(this).html(x1 + x2);
             });
+
+						$('#events').prepend('<li class="list-group-item "><strong>'+ethbtc+'</strong> '+Date()+'</li>');
         });
     }
     doPoll();
-  </script>
+</script>
+
 </body>
 </html>
