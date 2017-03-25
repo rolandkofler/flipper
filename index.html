@@ -18,7 +18,7 @@
             <li role="presentation"><a href="https://reddit.com/u/malefizer">u/malefizer</a></li>
           </ul>
         </nav>
-        <h3 class="text">Flipper</h3>
+        <h3 class="text"><small>Watchening the Flippening Happening</small></h3>
       </div>
 
 		<div id="content" class="jumbotron">
@@ -41,10 +41,10 @@
 
 			<div class="col-lg-6">
 				<div class="panel panel-default">
-	        <div class="panel-heading">Break Even Prices</div>
+	        <div class="panel-heading"><h3>Break Even Prices</h3></div>
 	        <ul id="breakeven" class="list-group">
-						 <li class="list-group-item "><h3>ETH price needs to be ~<strong><span id="display_btc_breakevenprice"></span> USD</strong> to reach Bitcoin marketcap</h3></li>
-						 <li class="list-group-item "><h3>BTC price needs to be ~<strong><span id="display_eth_breakevenprice"></span> USD</strong> to reach Ether marketcap</h3></li>
+						 <li class="list-group-item "><h3>ETH <strong><span id="display_eth_price"></span> </strong> &#8658; <strong><span id="display_btc_breakevenprice"></span> USD</strong></h3> to reach Bitcoin marketcap</li>
+						 <li class="list-group-item "><h3>BTC <strong><span id="display_btc_price"></span> </strong> &#8658; <strong><span id="display_eth_breakevenprice"></span> USD</strong></h3> to reach Ether marketcap</li>
 					</ul>
       	</div>
 				<div class="panel panel-default">
@@ -89,6 +89,8 @@
 						const ethbtcpercent2 =  round2(ethbtc)
             $('#display_ethbtc_pc').html(ethbtcpercent);
             $('#display_ethbtc_ratio').html(ethbtc);
+						$('#display_eth_price').html(Math.round(eth_price));
+						$('#display_btc_price').html(Math.round(btc_price));
 						$('#display_eth_breakevenprice').html(Math.round(eth_breakevenprice));
 						$('#display_btc_breakevenprice').html(Math.round(btc_breakevenprice));
 						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
