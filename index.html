@@ -27,7 +27,12 @@
         </nav>
         <h3 class="text"><small>Watchening the Flippening Happening</small></h3>
       </div>
-
+		<div class="alert alert-danger" role="alert" id="display_nodata">
+			<span>
+				<h3>No Data from Coinmarketcap.com</h3>
+				<h4>Probably we have exceeded max. queries allowed from this site. Come back in a few minutes.</h4>
+			</span>
+		</div>
 		<div id="content" class="jumbotron">
 
       <h2><strong>Does it flip?</strong></h2>
@@ -79,6 +84,8 @@
     function doPoll(){
         $.get(url, function(data) {
             console.log(data);  // process results here
+						if (!data) $('#display_nodata').show();
+            else $('#display_nodata').hide();
             jsondata = data;
 						const btc = (jsondata).filter((i,n) => i.id==="bitcoin")[0];
 						const eth = (jsondata).filter((i,n) => i.id==="ethereum")[0];
