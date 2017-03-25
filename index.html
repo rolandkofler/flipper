@@ -32,7 +32,6 @@
       <p class="text-muted">or more precise <span id="display_ethbtc_ratio" class="number"></span></p>
       <p><small>live data source: coinmarketcap.com, updates every 1m<small></p>
 
-
 		</div>
 
 		<div id="footer">
@@ -42,12 +41,16 @@
 
 			<div class="col-lg-6">
 				<div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Reverse History of Ratios</div>
-        <!-- List group -->
-        <ul id="events" class="list-group">
-        </ul>
-      </div>
+	        <div class="panel-heading">Break Even Prices</div>
+	        <ul id="breakeven" class="list-group">
+						 <li class="list-group-item "><h3>ETH price needs to be ~<strong><span id="display_btc_breakevenprice"></span> USD</strong> to reach Bitcoin marketcap</h3></li>
+						 <li class="list-group-item "><h3>BTC price needs to be ~<strong><span id="display_eth_breakevenprice"></span> USD</strong> to reach Ether marketcap</h3></li>
+					</ul>
+      	</div>
+				<div class="panel panel-default">
+	        <div class="panel-heading">Reverse History of Ratios</div>
+	        <ul id="events" class="list-group"></ul>
+      	</div>
 			</div>
 
 		</div>
@@ -64,20 +67,30 @@
 	<script src="//d3js.org/d3.v4.min.js"></script>
 	<script type="text/javascript" >
     url = "https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v1/ticker/?limit=3";
-
+    function round2(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
     function doPoll(){
         $.get(url, function(data) {
             console.log(data);  // process results here
             jsondata = data;
-            btc_marcap = Number((jsondata).filter((i,n) => i.id==="bitcoin")[0].market_cap_usd);
-            eth_marcap = Number((jsondata).filter((i,n) => i.id==="ethereum")[0].market_cap_usd);
+						const btc = (jsondata).filter((i,n) => i.id==="bitcoin")[0];
+						const eth = (jsondata).filter((i,n) => i.id==="ethereum")[0];
+            const btc_marcap = Number(btc.market_cap_usd);
+            const eth_marcap = Number(eth.market_cap_usd);
+						const btc_price = Number(btc.price_usd);
+            const eth_price = Number(eth.price_usd);
+						const btc_supply = Number(btc.available_supply);
+            const eth_supply = Number(eth.available_supply);
+						const btc_breakevenprice = eth_marcap/btc_supply;
+						const eth_breakevenprice = btc_marcap/eth_supply;
             $('#display_btc_marcap').html(btc_marcap);
             $('#display_eth_marcap').html(eth_marcap);
             const ethbtc = eth_marcap / btc_marcap;
             const ethbtcpercent = Math.round(ethbtc * 100);
-						const ethbtcpercent2 = Math.round((ethbtc + 1e-15) * 10000) / 100; //1e-15 scaling for binary division problems
+						const ethbtcpercent2 =  round2(ethbtc)
             $('#display_ethbtc_pc').html(ethbtcpercent);
             $('#display_ethbtc_ratio').html(ethbtc);
+						$('#display_eth_breakevenprice').html(Math.round(eth_breakevenprice));
+						$('#display_btc_breakevenprice').html(Math.round(btc_breakevenprice));
 						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
             setTimeout(doPoll,60000);
 
