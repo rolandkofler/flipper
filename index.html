@@ -25,11 +25,11 @@
 
       <h2><strong>Does it flip?</strong></h2>
 
-      <h2>ETH: <span class="text-right"><span id="display_eth_marcap" class="number"> </span> USD</span></h2>
-      <h2>BTC: <span class="text-right"><span id="display_btc_marcap" class="number"> </span> USD</span></h2>
+      <h2>ETH: <span class="text-right"><span class="display_eth_marcap number"> </span> USD</span></h2>
+      <h2>BTC: <span class="text-right"><span class="display_btc_marcap number"> </span> USD</span></h2>
 
-      <h1>ETH/BTC <strong>~<span id="display_ethbtc_pc"> </span>%</strong> <h1>
-      <p class="text-muted">or more precise <span id="display_ethbtc_ratio" class="number"></span></p>
+      <h1>ETH/BTC <strong>~<span class="display_ethbtc_pc"> </span>%</strong> <h1>
+      <p class="text-muted">or more precise <span class="display_ethbtc_ratio" class="number"></span></p>
       <p><small>live data source: coinmarketcap.com, updates every 5m<small></p>
 
 		</div>
@@ -43,8 +43,8 @@
 				<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Break Even Prices</h3></div>
 	        <ul id="breakeven" class="list-group">
-						 <li class="list-group-item "><h3>ETH <strong><span id="display_eth_price"></span> </strong> &#8658; <strong><span id="display_btc_breakevenprice"></span> USD</strong></h3> to reach Bitcoin marketcap</li>
-						 <li class="list-group-item "><h3>BTC <strong><span id="display_btc_price"></span> </strong> &#8658; <strong><span id="display_eth_breakevenprice"></span> USD</strong></h3> to reach Ether marketcap</li>
+						 <li class="list-group-item "><h3>ETH <strong><span class="display_eth_price"></span> </strong> &#8658; <strong><span class="display_eth_breakevenprice"></span> USD</strong></h3> to reach Bitcoin marketcap. breakeven(ETH) ≝ marcap(BTC) / supply(ETH) = <span class="display_btc_marcap number"></span> / <span class="display_eth_supply number"></span></li>
+						 <li class="list-group-item "><h3>BTC <strong><span class="display_btc_price"></span> </strong> &#8658; <strong><span class="display_btc_breakevenprice"></span> USD</strong></h3> to reach Ether marketcap. breakeven(BTC) ≝ marcap(ETH) / supply(BTC) = <span class="display_eth_marcap number"></span> / <span class="display_btc_supply number"></span></li>
 					</ul>
       	</div>
 				<div class="panel panel-default">
@@ -83,17 +83,19 @@
             const eth_supply = Number(eth.available_supply);
 						const btc_breakevenprice = eth_marcap/btc_supply;
 						const eth_breakevenprice = btc_marcap/eth_supply;
-            $('#display_btc_marcap').html(btc_marcap);
-            $('#display_eth_marcap').html(eth_marcap);
+            $('.display_btc_marcap').html(btc_marcap);
+            $('.display_eth_marcap').html(eth_marcap);
+						$('.display_btc_supply').html(btc_supply);
+            $('.display_eth_supply').html(eth_supply);
             const ethbtc = eth_marcap / btc_marcap;
             const ethbtcpercent = Math.round(ethbtc * 100);
 						const ethbtcpercent2 =  round2(ethbtc)
-            $('#display_ethbtc_pc').html(ethbtcpercent);
-            $('#display_ethbtc_ratio').html(ethbtc);
-						$('#display_eth_price').html(Math.round(eth_price));
-						$('#display_btc_price').html(Math.round(btc_price));
-						$('#display_eth_breakevenprice').html(Math.round(eth_breakevenprice));
-						$('#display_btc_breakevenprice').html(Math.round(btc_breakevenprice));
+            $('.display_ethbtc_pc').html(ethbtcpercent);
+            $('.display_ethbtc_ratio').html(ethbtc);
+						$('.display_eth_price').html(Math.round(eth_price));
+						$('.display_btc_price').html(Math.round(btc_price));
+						$('.display_eth_breakevenprice').html(Math.round(eth_breakevenprice));
+						$('.display_btc_breakevenprice').html(Math.round(btc_breakevenprice));
 						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
             setTimeout(doPoll,TIME);
 
