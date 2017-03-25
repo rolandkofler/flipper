@@ -75,9 +75,10 @@
             $('#display_eth_marcap').html(eth_marcap);
             const ethbtc = eth_marcap / btc_marcap;
             const ethbtcpercent = Math.round(ethbtc * 100);
+						const ethbtcpercent2 = Math.round((ethbtc + 1e-15) * 10000) / 100; //1e-15 scaling for binary division problems
             $('#display_ethbtc_pc').html(ethbtcpercent);
             $('#display_ethbtc_ratio').html(ethbtc);
-						$(document).prop('title', ethbtcpercent+'% Flipper | Watchening Ethereum Flippening Happening');
+						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
             setTimeout(doPoll,60000);
 
             $('.number').text(function () {
