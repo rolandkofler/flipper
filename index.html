@@ -45,7 +45,7 @@
       <p class="text-muted">or more precisely <span class="display_ethbtc_ratio" class="number"></span></p>
 			<p class="text-muted">Maximum value during this session was ~<span class="display_maximumRate" class="number"></span>%</p>
 
-      <p><small>live data source: coinmarketcap.com, updates every 5m<small></p>
+      <p><small>live data source: coinmarketcap.com<small></p>
 
 		</div>
 
@@ -85,19 +85,29 @@
     crossorigin="anonymous">
   </script>
 	<script src="//d3js.org/d3.v4.min.js"></script>
-	<script type="text/javascript" >
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-database.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    databaseURL: "https://theflippening.firebaseio.com/",
+	  };
+	  firebase.initializeApp(config);
+
 	  const TIME = 60*1000*5;
 		const KOEPPELMANN = 0.05833;
 		var maximumRate=0;
     url = "https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v1/ticker/?limit=3";
     function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
 		function round2(x){return Math.round((x + 1e-15) * 10000) / 10000;}//1e-15 scaling for binary division problems
-    function doPoll(){
-        $.get(url, function(data) {
+
+		var dataRef = firebase.database().ref('coinmarketcap/current');
+		dataRef.on('value', function(data) {
             console.log(data);  // process results here
 						if (!data) $('#display_nodata').show();
             else $('#display_nodata').hide();
-            jsondata = data;
+            jsondata = data.val();
 						const btc = (jsondata).filter((i,n) => i.id==="bitcoin")[0];
 						const eth = (jsondata).filter((i,n) => i.id==="ethereum")[0];
             const btc_marcap = Number(btc.market_cap_usd);
@@ -130,7 +140,7 @@
 						$('.display_koeppel_diff_usd').html(round2(koeppel_diff_usd));
 						$('.display_koeppelmann').html(0.05833);
 						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
-            setTimeout(doPoll,TIME);
+            //setTimeout(doPoll,TIME);
 
             $('.number').text(function () {
                 var str = $(this).html() + '';
@@ -144,9 +154,9 @@
             });
 
 						$('#events').prepend('<li class="list-group-item "><strong>'+ethbtc+'</strong> '+Date()+'</li>');
-        });
-    }
-    doPoll();
+
+    });
+    //doPoll();
 </script>
 
 </body>
