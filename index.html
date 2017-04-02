@@ -43,7 +43,7 @@
 
       <h1>ETH/BTC <strong>~<span class="display_ethbtc_pc"> </span>%</strong> <h1>
       <p class="text-muted">or more precisely <span class="display_ethbtc_ratio" class="number"></span></p>
-			<p class="text-muted">Maximum value during this session was ~<span class="display_maximumRate" class="number"></span>%</p>
+			<p class="text-muted">Maximum value recorded ~<span class="display_maximumRate" class="number"></span>%</p>
 
       <p><small>live data source: coinmarketcap.com<small></p>
 
@@ -95,52 +95,44 @@
 	  };
 	  firebase.initializeApp(config);
 
-	  const TIME = 60*1000*5;
+
 		const KOEPPELMANN = 0.05833;
 		var maximumRate=0;
-    url = "https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v1/ticker/?limit=3";
+
     function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
 		function round2(x){return Math.round((x + 1e-15) * 10000) / 10000;}//1e-15 scaling for binary division problems
 
-		var dataRef = firebase.database().ref('coinmarketcap/current');
-		dataRef.on('value', function(data) {
+		var dataRef = firebase.database().ref('coinmarketcap/history');
+		var statsRef = firebase.database().ref('coinmarketcap/statistics');
+		statsRef.on('value', function (data){
+			stats = data.val();
+			$('.display_maximumRate').html(roundPc(stats.maximumRate));
+		});
+		dataRef.limitToLast(1).on('child_added', function(data) {
             console.log(data);  // process results here
 						if (!data) $('#display_nodata').show();
             else $('#display_nodata').hide();
-            jsondata = data.val();
-						const btc = (jsondata).filter((i,n) => i.id==="bitcoin")[0];
-						const eth = (jsondata).filter((i,n) => i.id==="ethereum")[0];
-            const btc_marcap = Number(btc.market_cap_usd);
-            const eth_marcap = Number(eth.market_cap_usd);
-						const btc_price = Number(btc.price_usd);
-            const eth_price = Number(eth.price_usd);
-						const ethbtc_price = Number(eth.price_btc);
-						const koeppel_diff_btc = ethbtc_price - KOEPPELMANN;
-						const koeppel_diff_usd = koeppel_diff_btc * btc_price;
-						const btc_supply = Number(btc.available_supply);
-            const eth_supply = Number(eth.available_supply);
-						const btc_breakevenprice = eth_marcap/btc_supply;
-						const eth_breakevenprice = btc_marcap/eth_supply;
-            $('.display_btc_marcap').html(btc_marcap);
-            $('.display_eth_marcap').html(eth_marcap);
-						$('.display_btc_supply').html(btc_supply);
-            $('.display_eth_supply').html(eth_supply);
-            const ethbtc = eth_marcap / btc_marcap;
-            const ethbtcpercent = Math.round(ethbtc * 100);
-						const ethbtcpercent2 =  roundPc(ethbtc)
-						if (maximumRate < ethbtc) maximumRate = ethbtc;
-						$('.display_maximumRate').html(roundPc(maximumRate));
+            stats = data.val();
+
+            $('.display_btc_marcap').html(stats.btc_marcap);
+            $('.display_eth_marcap').html(stats.eth_marcap);
+						$('.display_btc_supply').html(stats.btc_supply);
+            $('.display_eth_supply').html(stats.eth_supply);
+
+            const ethbtcpercent = Math.round(stats.ethbtc * 100);
+						const ethbtcpercent2 =  roundPc(stats.ethbtc)
+
             $('.display_ethbtc_pc').html(ethbtcpercent);
-            $('.display_ethbtc_ratio').html(ethbtc);
-						$('.display_eth_price').html(Math.round(eth_price));
-						$('.display_btc_price').html(Math.round(btc_price));
-						$('.display_eth_breakevenprice').html(Math.round(eth_breakevenprice));
-						$('.display_btc_breakevenprice').html(Math.round(btc_breakevenprice));
-						$('.display_koeppel_diff_btc').html(round2(koeppel_diff_btc));
-						$('.display_koeppel_diff_usd').html(round2(koeppel_diff_usd));
-						$('.display_koeppelmann').html(0.05833);
+            $('.display_ethbtc_ratio').html(stats.ethbtc);
+						$('.display_eth_price').html(Math.round(stats.eth_price));
+						$('.display_btc_price').html(Math.round(stats.btc_price));
+						$('.display_eth_breakevenprice').html(Math.round(stats.eth_breakevenprice));
+						$('.display_btc_breakevenprice').html(Math.round(stats.btc_breakevenprice));
+						$('.display_koeppel_diff_btc').html(round2(stats.koeppel_diff_btc));
+						$('.display_koeppel_diff_usd').html(round2(stats.koeppel_diff_usd));
+						$('.display_koeppelmann').html(KOEPPELMANN);
 						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
-            //setTimeout(doPoll,TIME);
+
 
             $('.number').text(function () {
                 var str = $(this).html() + '';
