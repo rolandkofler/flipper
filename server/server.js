@@ -22,7 +22,12 @@ var historyRef = admin.database().ref('coinmarketcap/history');
 var statisticsRef = admin.database().ref('coinmarketcap/statistics');
 poller= function doPoll(){
     request(url, function(error, response, body) {
-        writeData(JSON.parse(body));
+         try {
+           JSON.parse(body)
+           writeData();
+         } catch (e){
+           console.log("JSON parse exception ", e);
+         }
      });
    };
 
