@@ -23,8 +23,8 @@ var statisticsRef = admin.database().ref('coinmarketcap/statistics');
 poller= function doPoll(){
     request(url, function(error, response, body) {
          try {
-           JSON.parse(body)
-           writeData();
+           const d = JSON.parse(body);
+           writeData(d);
          } catch (e){
            console.log("JSON parse exception ", e);
          }
