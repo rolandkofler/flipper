@@ -63,7 +63,10 @@
 						 <li class="list-group-item ">
 							 <h3>Δ Köppelmann <strong><span class="display_koeppel_diff_btc"></span> BTC</strong> (<span class="display_koeppel_diff_usd"></span> USD)</h3>
 							 The Köppelmann Constant <strong><span class="display_koeppelmann"></span></strong> is the ETHBTC rate where Ether PoW mining yields the same value as Bitcoin mining (<a href="https://www.reddit.com/r/ethtrader/comments/609xse/watch_out_for_ethbtc_price_0058333_above_that/df56k66/">Source: Köppelmann, Reddit</a>).
-							 Also, it is the ETHBTC rate where Ether PoW expends more economic resources on PoW than Bitcoin (source: <a href="https://www.reddit.com/r/ethereum/comments/60428n/is_ethereum_about_to_overtake_bitcoin_in_terms_of/df43u6t/">V. Buterin, Reddit</a>). Delta Köppelman = price(ETHBTC) - <span class="display_koeppelmann"></span>
+							 Also, it is the ETHBTC rate where Ether PoW expends more economic resources on PoW than Bitcoin (source: <a href="https://www.reddit.com/r/ethereum/comments/60428n/is_ethereum_about_to_overtake_bitcoin_in_terms_of/df43u6t/">V. Buterin, Reddit</a>). Delta Köppelman = price(ETHBTC) - <span class="display_koeppelmann">
+							 <strong>Köppelmann constant adjusted</strong> <a href="https://www.reddit.com/r/ethtrader/comments/685jqk/30_reached_this_is_gentlemen/dgw24cd/"> according to suggestion by V. Buterin.</a> 
+							 </span>
+
 						 </li>
 					</ul>
       	</div>
@@ -96,7 +99,7 @@
 	  firebase.initializeApp(config);
 
 
-		const KOEPPELMANN = 0.05833;
+		const KOEPPELMANN = 0.06207;
 		var maximumRate=0;
 
     function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems

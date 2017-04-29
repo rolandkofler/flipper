@@ -11,7 +11,7 @@ admin.initializeApp({
   databaseURL: "https://theflippening.firebaseio.com"
 });
 
-const KOEPPELMANN = 0.05833;
+const KOEPPELMANN = 0.06207;
 var maximumRate=0;
 
 function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
