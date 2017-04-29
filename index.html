@@ -44,7 +44,7 @@
 
       <h1>ETH/BTC <strong>~<span class="display_ethbtc_pc"> </span>%</strong> <h1>
       <p class="text-muted">or more precisely <span class="display_ethbtc_ratio" class="number"></span></p>
-			<p class="text-muted">Maximum value recorded ~<span class="display_maximumRate" class="number"></span>%</p>
+			<p class="text-muted">Maximum value recorded ~<span class="display_maximumRate" class="number"></span>% the day of <span class="display_maximumRateTimestamp" > </span></p>
 
       <p><small>live data source: coinmarketcap.com<small></p>
 
@@ -87,7 +87,7 @@
     crossorigin="anonymous">
   </script>
 	<script src="//d3js.org/d3.v4.min.js"></script>
-
+  <script src="//momentjs.com/downloads/moment.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-database.js"></script>
 	<script>
@@ -109,6 +109,7 @@
 		statsRef.on('value', function (data){
 			stats = data.val();
 			$('.display_maximumRate').html(roundPc(stats.maximumRate));
+			$('.display_maximumRateTimestamp').html(moment.unix(stats.maximumRateTimestamp/1000).format("YYYY.MM.DD"));
 		});
 		dataRef.limitToLast(1).on('child_added', function(data) {
             console.log(data);  // process results here

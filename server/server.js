@@ -54,8 +54,15 @@ function writeData(data) {
   stats.ethbtc = stats.eth_marcap / stats.btc_marcap;
 
   statisticsRef.once('value').then(function(snapshot) {
-    maximumRate = snapshot.val().maximumRate;
-    if (maximumRate < stats.ethbtc) statisticsRef.set({'maximumRate': maximumRate});
+    maximumRate = snapshot.val().maximumRate || 0;
+    if (maximumRate < stats.ethbtc) {
+      statisticsRef.set(
+      {
+        'maximumRateTimestamp' : admin.database.ServerValue.TIMESTAMP,
+        'maximumRate': stats.ethbtc
+      }
+      );
+    }
   });
 
   //admin.database().ref('coinmarketcap/current').set(data);
