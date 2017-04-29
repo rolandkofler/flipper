@@ -12,7 +12,7 @@ admin.initializeApp({
 });
 
 const KOEPPELMANN = 0.06207;
-var maximumRate=0;
+var maximumRate;
 
 function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
 function round2(x){return Math.round((x + 1e-15) * 10000) / 10000;}//1e-15 scaling for binary division problems
@@ -20,6 +20,7 @@ function round2(x){return Math.round((x + 1e-15) * 10000) / 10000;}//1e-15 scali
 url = "https://api.coinmarketcap.com/v1/ticker/?limit=2";
 var historyRef = admin.database().ref('coinmarketcap/history');
 var statisticsRef = admin.database().ref('coinmarketcap/statistics');
+
 poller= function doPoll(){
     request(url, function(error, response, body) {
          try {
@@ -51,11 +52,15 @@ function writeData(data) {
   stats.btc_breakevenprice = stats.eth_marcap/stats.btc_supply;
   stats.eth_breakevenprice = stats.btc_marcap/stats.eth_supply;
   stats.ethbtc = stats.eth_marcap / stats.btc_marcap;
-  if (maximumRate < stats.ethbtc) maximumRate = stats.ethbtc;
+
+  statisticsRef.once('value').then(function(snapshot) {
+    maximumRate = snapshot.val().maximumRate;
+    if (maximumRate < stats.ethbtc) statisticsRef.set({'maximumRate': maximumRate});
+  });
 
   //admin.database().ref('coinmarketcap/current').set(data);
   historyRef.push().set(stats);
-  statisticsRef.set({'maximumRate': maximumRate});
+
 }
 
 var dataRef = admin.database().ref('coinmarketcap/current');
