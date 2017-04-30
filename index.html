@@ -110,7 +110,7 @@
 		statsRef.on('value', function (data){
 			stats = data.val();
 			$('.display_maximumRate').html(roundPc(stats.maximumRate));
-			$('.display_maximumRateTimestamp').html(moment.unix(stats.maximumRateTimestamp/1000).format("YYYY.MM.DD"));
+			$('.display_maximumRateTimestamp').html(moment.unix(stats.maximumRateTimestamp/1000).format("YYYY-MM-DD"));
 		});
 		dataRef.limitToLast(1).on('child_added', function(data) {
             console.log(data);  // process results here
