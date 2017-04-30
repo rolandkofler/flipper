@@ -1,0 +1,1 @@
+const KOEPPELMANN = 0.06822;
