@@ -1,7 +1,7 @@
 var firebase = require("firebase");
 var request = require('request');
 var admin = require("firebase-admin");
-require("../src/variables.js");
+//require("../src/variables.js");
 // Initialize Firebase
 // TODO: Replace with your project's customized code snippet
 var admin = require("firebase-admin");
@@ -12,7 +12,7 @@ admin.initializeApp({
   databaseURL: "https://theflippening.firebaseio.com"
 });
 
-
+const KOEPPELMANN = 0.06822;
 var maximumRate;
 
 function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
