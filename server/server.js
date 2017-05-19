@@ -18,7 +18,7 @@ var maximumRate;
 function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
 function round2(x){return Math.round((x + 1e-15) * 10000) / 10000;}//1e-15 scaling for binary division problems
 
-url = "https://api.coinmarketcap.com/v1/ticker/?limit=2";
+url = "https://api.coinmarketcap.com/v1/ticker/?limit=3";
 var historyRef = admin.database().ref('coinmarketcap/history');
 var statisticsRef = admin.database().ref('coinmarketcap/statistics');
 
@@ -53,7 +53,7 @@ function writeData(data) {
   stats.btc_breakevenprice = stats.eth_marcap/stats.btc_supply;
   stats.eth_breakevenprice = stats.btc_marcap/stats.eth_supply;
   stats.ethbtc = stats.eth_marcap / stats.btc_marcap;
-
+  stats.timestamp = Date.now();
   statisticsRef.once('value').then(function(snapshot) {
     maximumRate = snapshot.val().maximumRate || 0;
     if (maximumRate < stats.ethbtc) {
@@ -67,12 +67,26 @@ function writeData(data) {
   });
 
   //admin.database().ref('coinmarketcap/current').set(data);
-  historyRef.push().set(stats);
+  console.log("history will be added", stats)
+  historyRef.push().set(stats).then(function() {
+    console.log("history added")
+  })
+  .catch(function(error) {
+    console.log("history add failed: " + error.message)
+  });
 
 }
 
-var dataRef = admin.database().ref('coinmarketcap/current');
-dataRef.on('value', function(snapshot) {
-  console.log(snapshot.val());
 
+
+var now = Date.now();
+var cutoff = now - 30 * 24 * 60 * 60 * 1000;
+var old = historyRef.orderByChild('timestamp').endAt(cutoff).limitToLast(1);
+var listener = old.on('child_added', function(snapshot) {
+    snapshot.ref.remove().then(function() {
+    console.log("Remove succeeded.")
+  })
+  .catch(function(error) {
+    console.log("Remove failed: " + error.message)
+  });
 });
