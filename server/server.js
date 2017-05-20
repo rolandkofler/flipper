@@ -67,13 +67,8 @@ function writeData(data) {
   });
 
   //admin.database().ref('coinmarketcap/current').set(data);
-  console.log("history will be added", stats)
-  historyRef.push().set(stats).then(function() {
-    console.log("history added")
-  })
-  .catch(function(error) {
-    console.log("history add failed: " + error.message)
-  });
+  console.log("history will be added", stats);
+  historyRef.push().set(stats);
 
 }
 
