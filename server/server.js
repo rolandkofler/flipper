@@ -6,13 +6,14 @@ var admin = require("firebase-admin");
 // TODO: Replace with your project's customized code snippet
 var admin = require("firebase-admin");
 var serviceAccount = require("./theflippening-firebase-adminsdk-jsgw4-ab0c7407a6.json");
-
+const KOEPPELMANN = 0.05833;
+const BUTERIN = 0.0762;
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://theflippening.firebaseio.com"
 });
 
-const KOEPPELMANN = 0.06822;
+
 var maximumRate;
 
 function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
@@ -47,7 +48,7 @@ function writeData(data) {
   stats.eth_price = Number(eth.price_usd);
   stats.ethbtc_price = Number(eth.price_btc);
   stats.koeppel_diff_btc = stats.ethbtc_price - KOEPPELMANN;
-  stats.koeppel_diff_usd = stats.koeppel_diff_btc * stats.btc_price;
+  stats.buterin_diff_btc = stats.ethbtc_price - BUTERIN;
   stats.btc_supply = Number(btc.available_supply);
   stats.eth_supply = Number(eth.available_supply);
   stats.btc_breakevenprice = stats.eth_marcap/stats.btc_supply;

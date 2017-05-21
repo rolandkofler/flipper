@@ -1,1 +1,2 @@
-const KOEPPELMANN = 0.06822;
+const KOEPPELMANN = 0.05833;
+const BUTERIN = 0.0762;
