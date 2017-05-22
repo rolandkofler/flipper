@@ -59,6 +59,7 @@
 				<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Break Even Prices</h3></div>
 	        <ul id="breakeven" class="list-group">
+						<li class="list-group-item "><h3><span class="display_ethbtc_price"></span> &#8658; <strong><span class="display_ethbtc_breakeven"></span> ETH/BTC</strong></h3> <strong>If the price of one Eth reaches the price of <span class="display_ethbtc_breakeven_pc"></span>% of one Bitcoin it flippened</strong> (suggested by <a href="https://www.reddit.com/user/rath3t">u/rath3t</a>). Breakeven price(ETH/BTC) ≝ supply(BTC) / supply(ETH)</li>
 						 <li class="list-group-item "><h3>ETH <strong><span class="display_eth_price"></span> </strong> &#8658; <strong><span class="display_eth_breakevenprice"></span> USD</strong></h3> to reach Bitcoin marketcap. breakeven(ETH) ≝ marcap(BTC) / supply(ETH) = <span class="display_btc_marcap number"></span> / <span class="display_eth_supply number"></span></li>
 						 <li class="list-group-item "><h3>BTC <strong><span class="display_btc_price"></span> </strong> &#8658; <strong><span class="display_btc_breakevenprice"></span> USD</strong></h3> to reach Ether marketcap. breakeven(BTC) ≝ marcap(ETH) / supply(BTC) = <span class="display_eth_marcap number"></span> / <span class="display_btc_supply number"></span></li>
 						 <li class="list-group-item ">
@@ -144,6 +145,9 @@
 						$('.display_buterin_diff_btc').html(round2(stats.buterin_diff_btc));
 						$('.display_buterin_diff_pc').html(roundPc(stats.ethbtc_price/BUTERIN));
 						$('.display_buterin').html(BUTERIN);
+						$('.display_ethbtc_price').html(round2(stats.ethbtc_price));
+						$('.display_ethbtc_breakeven').html(round2(stats.eth_breakevenprice/stats.btc_price));
+						$('.display_ethbtc_breakeven_pc').html(roundPc(stats.eth_breakevenprice/stats.btc_price));
 						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
 
 
