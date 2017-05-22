@@ -146,8 +146,8 @@
 						$('.display_buterin_diff_pc').html(roundPc(stats.ethbtc_price/BUTERIN));
 						$('.display_buterin').html(BUTERIN);
 						$('.display_ethbtc_price').html(round2(stats.ethbtc_price));
-						$('.display_ethbtc_breakeven').html(round2(stats.eth_breakevenprice/stats.btc_price));
-						$('.display_ethbtc_breakeven_pc').html(roundPc(stats.eth_breakevenprice/stats.btc_price));
+						$('.display_ethbtc_breakeven').html(round2(stats.btc_supply/stats.eth_supply));
+						$('.display_ethbtc_breakeven_pc').html(roundPc(stats.btc_supply/stats.eth_supply));
 						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
 
 
