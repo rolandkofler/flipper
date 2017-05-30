@@ -44,6 +44,8 @@ function writeData(data) {
   const eth = (data).filter((i,n) => i.id==="ethereum")[0];
   stats.btc_marcap = Number(btc.market_cap_usd);
   stats.eth_marcap = Number(eth.market_cap_usd);
+  stats.btc_24h_volume_usd =Number(btc["24h_volume_usd"]);
+  stats.eth_24h_volume_usd =Number(eth["24h_volume_usd"]);
   stats.btc_price = Number(btc.price_usd);
   stats.eth_price = Number(eth.price_usd);
   stats.ethbtc_price = Number(eth.price_btc);

@@ -36,7 +36,6 @@
 			</span>
 		</div>
 		<div id="content" class="jumbotron">
-
       <h2><strong>Does it flip?</strong></h2>
 			<p>Market capitalization of</p>
       <h2>ETH: <span class="text-right"><span class="display_eth_marcap number"> </span> USD</span></h2>
@@ -46,7 +45,7 @@
       <p class="text-muted">or more precisely <span class="display_ethbtc_ratio" class="number"></span></p>
 			<p class="text-muted">Maximum value recorded ~<span class="display_maximumRate" class="number"></span>% the day of <span class="display_maximumRateTimestamp" > </span></p>
 
-      <p><small>live data source: coinmarketcap.com<small></p>
+      <p><small>Flippen.it, live data source: coinmarketcap.com<small></p>
 
 		</div>
 
@@ -57,9 +56,15 @@
 
 			<div class="col-lg-6">
 				<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Break Even Prices</h3></div>
+	        <div class="panel-heading"><h3>Break Even Metrics</h3></div>
 	        <ul id="breakeven" class="list-group">
-						<li class="list-group-item "><h3><span class="display_ethbtc_price"></span> &#8658; <strong><span class="display_ethbtc_breakeven"></span> ETH/BTC</strong></h3> <strong>If the price of one Eth reaches the price of <span class="display_ethbtc_breakeven_pc"></span>% of one Bitcoin it flippened</strong> (suggested by <a href="https://www.reddit.com/user/rath3t">u/rath3t</a>). Breakeven price(ETH/BTC) ≝ supply(BTC) / supply(ETH)</li>
+						 <li class="list-group-item ">
+							 <h3>
+								 <span class="display_ethbtc_24vol"></span> <strong>% ETH/BTC 24h Volume</strong>
+							 </h3>
+							 <p>Ratio of USD trading volumes vol24h(ETH) / vol24h(BTC) = <span class="display_eth_24vol_usd"></span> / <span class="display_btc_24vol_usd"></span> </p 	>
+						 </li>
+						 <li class="list-group-item "><h3><span class="display_ethbtc_price"></span> &#8658; <strong><span class="display_ethbtc_breakeven"></span> ETH/BTC</strong></h3> <strong>If the price of one Eth reaches the price of <span class="display_ethbtc_breakeven_pc"></span>% of one Bitcoin it flippened</strong> (suggested by <a href="https://www.reddit.com/user/rath3t">u/rath3t</a>). Breakeven price(ETH/BTC) ≝ supply(BTC) / supply(ETH)</li>
 						 <li class="list-group-item "><h3>ETH <strong><span class="display_eth_price"></span> </strong> &#8658; <strong><span class="display_eth_breakevenprice"></span> USD</strong></h3> to reach Bitcoin marketcap. breakeven(ETH) ≝ marcap(BTC) / supply(ETH) = <span class="display_btc_marcap number"></span> / <span class="display_eth_supply number"></span></li>
 						 <li class="list-group-item "><h3>BTC <strong><span class="display_btc_price"></span> </strong> &#8658; <strong><span class="display_btc_breakevenprice"></span> USD</strong></h3> to reach Ether marketcap. breakeven(BTC) ≝ marcap(ETH) / supply(BTC) = <span class="display_eth_marcap number"></span> / <span class="display_btc_supply number"></span></li>
 						 <li class="list-group-item ">
@@ -132,8 +137,12 @@
 
             const ethbtcpercent = Math.round(stats.ethbtc * 100);
 						const ethbtcpercent2 =  roundPc(stats.ethbtc)
+						const ethbtc_24vol= roundPc(stats.eth_24h_volume_usd/ stats.btc_24h_volume_usd);
 
             $('.display_ethbtc_pc').html(ethbtcpercent);
+						$('.display_eth_24vol_usd').html(stats.eth_24h_volume_usd);
+						$('.display_btc_24vol_usd').html(stats.btc_24h_volume_usd);
+						$('.display_ethbtc_24vol').html(ethbtc_24vol);
             $('.display_ethbtc_ratio').html(stats.ethbtc);
 						$('.display_eth_price').html(Math.round(stats.eth_price));
 						$('.display_btc_price').html(Math.round(stats.btc_price));
