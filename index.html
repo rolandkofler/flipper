@@ -67,6 +67,7 @@
 						 <li class="list-group-item "><h3><span class="display_ethbtc_price"></span> &#8658; <strong><span class="display_ethbtc_breakeven"></span> ETH/BTC</strong></h3> <strong>If the price of one Eth reaches the price of <span class="display_ethbtc_breakeven_pc"></span>% of one Bitcoin it flippened</strong> (suggested by <a href="https://www.reddit.com/user/rath3t">u/rath3t</a>). Breakeven price(ETH/BTC) ≝ supply(BTC) / supply(ETH)</li>
 						 <li class="list-group-item "><h3>ETH <strong><span class="display_eth_price"></span> </strong> &#8658; <strong><span class="display_eth_breakevenprice"></span> USD</strong></h3> to reach Bitcoin marketcap. breakeven(ETH) ≝ marcap(BTC) / supply(ETH) = <span class="display_btc_marcap number"></span> / <span class="display_eth_supply number"></span></li>
 						 <li class="list-group-item "><h3>BTC <strong><span class="display_btc_price"></span> </strong> &#8658; <strong><span class="display_btc_breakevenprice"></span> USD</strong></h3> to reach Ether marketcap. breakeven(BTC) ≝ marcap(ETH) / supply(BTC) = <span class="display_eth_marcap number"></span> / <span class="display_btc_supply number"></span></li>
+						 <li class="list-group-item "><h3>Equality: ETH <strong><span class="display_eth_eqp"></span></strong>, BTC <strong><span class="display_btc_eqp"></span></strong> USD</h3> for BTC and ETH to meet in the middle.  equalmarcap ≝ (marcap(ETH) + marcap(BTC)) / 2 = <span class="display_avg_marcap number"></span> USD. equality(BTC) ≝ equalmarcap / supply(BTC). equality(ETH) ≝ equalmarcap / supply(ETH).</li>
 						 <li class="list-group-item ">
 							 <h3>Δ Köppelmann <strong><span class="display_koeppel_diff_btc"></span> ETH/BTC</strong> (<span class="display_koeppel_diff_pc"></span>%)</h3>
 							 The Köppelmann Constant <strong><span class="display_koeppelmann"></span></strong>
@@ -129,6 +130,9 @@
 						if (!data) $('#display_nodata').show();
             else $('#display_nodata').hide();
             stats = data.val();
+	    stats.avg_marcap = (stats.btc_marcap + stats.eth_marcap) / 2;
+            stats.eth_eqp = stats.avg_marcap / stats.eth_supply;
+            stats.btc_eqp = stats.avg_marcap / stats.btc_supply;
 
             $('.display_btc_marcap').html(stats.btc_marcap);
             $('.display_eth_marcap').html(stats.eth_marcap);
@@ -148,6 +152,9 @@
 						$('.display_btc_price').html(Math.round(stats.btc_price));
 						$('.display_eth_breakevenprice').html(Math.round(stats.eth_breakevenprice));
 						$('.display_btc_breakevenprice').html(Math.round(stats.btc_breakevenprice));
+						$('.display_avg_marcap').html(Math.round(stats.avg_marcap));
+        			                $('.display_eth_eqp').html(Math.round(stats.eth_eqp));
+			                        $('.display_btc_eqp').html(Math.round(stats.btc_eqp));
 						$('.display_koeppel_diff_btc').html(round2(stats.koeppel_diff_btc));
 						$('.display_koeppel_diff_pc').html(roundPc(stats.ethbtc_price/KOEPPELMANN));
 						$('.display_koeppelmann').html(KOEPPELMANN);
