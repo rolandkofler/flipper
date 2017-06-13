@@ -34,6 +34,7 @@ var poller = function doPoll(){
      });
    };
 
+
 const TIME= 60 * 1000 * 5; // 5 minutes
 poller(); // do first run immediately
 setInterval(poller, TIME); // then start polling
