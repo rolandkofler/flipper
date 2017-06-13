@@ -1,17 +1,17 @@
 var firebase = require("firebase");
 var request = require('request');
 var admin = require("firebase-admin");
-//require("../src/variables.js");
-// Initialize Firebase
-// TODO: Replace with your project's customized code snippet
+
+Initialize Firebase
+
 var admin = require("firebase-admin");
-// var serviceAccount = require("./theflippening-firebase-adminsdk-jsgw4-ab0c7407a6.json");
+var serviceAccount = require("./theflippening-firebase-adminsdk-jsgw4-ab0c7407a6.json");
 const KOEPPELMANN = 0.05833;
 const BUTERIN = 0.0762;
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://theflippening.firebaseio.com"
-// });
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://theflippening.firebaseio.com"
+});
 
 
 var maximumRate;
@@ -20,8 +20,8 @@ function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scalin
 function round2(x){return Math.round((x + 1e-15) * 10000) / 10000;}//1e-15 scaling for binary division problems
 
 url = "https://api.coinmarketcap.com/v1/ticker/?limit=5";
-// var historyRef = admin.database().ref('coinmarketcap/history');
-// var statisticsRef = admin.database().ref('coinmarketcap/statistics');
+var historyRef = admin.database().ref('coinmarketcap/history');
+var statisticsRef = admin.database().ref('coinmarketcap/statistics');
 
 var poller = function doPoll(){
     request(url, function(error, response, body) {
@@ -63,22 +63,22 @@ function writeData(data) {
       stats.eth_breakevenprice = stats.btc_marcap/stats.eth_supply;
       stats.ethbtc = stats.eth_marcap / stats.btc_marcap;
       stats.timestamp = Date.now();
-      // statisticsRef.once('value').then(function(snapshot) {
-      //   maximumRate = snapshot.val().maximumRate || 0;
-      //   console.log("update",maximumRate, stats.ethbtc);
-      //   if (maximumRate < stats.ethbtc) {
-      //     statisticsRef.set(
-      //     {
-      //       'maximumRateTimestamp' : admin.database.ServerValue.TIMESTAMP,
-      //       'maximumRate': stats.ethbtc
-      //     }
-      //     );
-      //   }
-      // });
+       statisticsRef.once('value').then(function(snapshot) {
+         maximumRate = snapshot.val().maximumRate || 0;
+         console.log("update",maximumRate, stats.ethbtc);
+         if (maximumRate < stats.ethbtc) {
+           statisticsRef.set(
+           {
+             'maximumRateTimestamp' : admin.database.ServerValue.TIMESTAMP,
+             'maximumRate': stats.ethbtc
+           }
+           );
+         }
+       });
 
-      //admin.database().ref('coinmarketcap/current').set(data);
+      admin.database().ref('coinmarketcap/current').set(data);
       console.log("history will be added", stats);
-      // historyRef.push().set(stats);
+       historyRef.push().set(stats);
     } else {
         console.log("data from API hasn't changed");
     }
@@ -89,14 +89,14 @@ function writeData(data) {
 
 
 
-// var now = Date.now();
-// var cutoff = now - 30 * 24 * 60 * 60 * 1000;
-// var old = historyRef.orderByChild('timestamp').endAt(cutoff).limitToLast(1);
-// var listener = old.on('child_added', function(snapshot) {
-//     snapshot.ref.remove().then(function() {
-//     console.log("Remove succeeded.")
-//   })
-//   .catch(function(error) {
-//     console.log("Remove failed: " + error.message)
-//   });
-// });
+ var now = Date.now();
+ var cutoff = now - 30 * 24 * 60 * 60 * 1000;
+ var old = historyRef.orderByChild('timestamp').endAt(cutoff).limitToLast(1);
+ var listener = old.on('child_added', function(snapshot) {
+     snapshot.ref.remove().then(function() {
+     console.log("Remove succeeded.")
+   })
+   .catch(function(error) {
+     console.log("Remove failed: " + error.message)
+   });
+ });
