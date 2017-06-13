@@ -34,7 +34,7 @@ poller= function doPoll(){
      });
    };
 
-TIME= 6 * 1000 * 2;
+TIME= 60 * 1000 * 10;
 setInterval(poller, TIME);
 
 
@@ -59,7 +59,7 @@ function writeData(data) {
   stats.timestamp = Date.now();
   statisticsRef.once('value').then(function(snapshot) {
     maximumRate = snapshot.val().maximumRate || 0;
-    console.log("update",maximumRate, stats.ethbtc);
+    console.log("maximumRate, stats.ethbtc);
     if (maximumRate < stats.ethbtc) {
       statisticsRef.set(
       {
