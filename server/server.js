@@ -2,9 +2,6 @@ var firebase = require("firebase");
 var request = require('request');
 var admin = require("firebase-admin");
 
-Initialize Firebase
-
-var admin = require("firebase-admin");
 var serviceAccount = require("./theflippening-firebase-adminsdk-jsgw4-ab0c7407a6.json");
 const KOEPPELMANN = 0.05833;
 const BUTERIN = 0.0762;
@@ -76,7 +73,6 @@ function writeData(data) {
          }
        });
 
-      admin.database().ref('coinmarketcap/current').set(data);
       console.log("history will be added", stats);
        historyRef.push().set(stats);
     } else {
