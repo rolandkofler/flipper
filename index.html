@@ -2,192 +2,230 @@
 <html>
 <head>
 
-	<title>Flipper | Watchening Ethereum Flippening Happening</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="Cache-control" content="no-cache">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link href="./css/main.css" rel="stylesheet">
-	<!--all favicon stuff-->
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="manifest.json">
-	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
-	<meta name="theme-color" content="#ffffff">
+  <title>Flipper | Watchening Ethereum Flippening Happening</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="css/main.css" rel="stylesheet">
+
+  <!--all favicon stuff-->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="manifest.json">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
 
-	<div id="container" class="container">
-		<div class="alert alert-success alert-dismissable">
-  	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	  <strong>Improved bandwith usage</strong> thanks to u/keaukraine
-		Every cent in excess goes to a good cause. <a href="https://www.reddit.com/r/ethtrader/comments/6gsfmc/flippenit_up_again/"> Please make suggestion for the donations on reddit.</a>
-		<p>Thanks r/EthTrader</p>
+<div id="container" class="container">
 
-	</div>
-    <div class="header clearfix">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Improved bandwith usage</strong> thanks to u/keaukraine. Every cent in excess goes to a good cause.
+        <a href="https://www.reddit.com/r/ethtrader/comments/6gsfmc/flippenit_up_again/">Please make suggestion for the donations on reddit.</a>
+        <p>Thanks r/EthTrader</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-
             <li role="presentation"><a href="https://reddit.com/u/malefizer">u/malefizer</a></li>
-
           </ul>
         </nav>
-        <h3 class="text"><small>Watchening the Flippening Happening</small></h3>
-      </div>
-		<div class="alert alert-danger hidden" role="alert" id="display_nodata">
-			<span>
-				<h3>No Data from Coinmarketcap.com</h3>
-				<h4>Probably we have exceeded max. queries allowed from this site. Come back in a few minutes.</h4>
-			</span>
-		</div>
-		<div id="content" class="jumbotron">
-      <h2><strong>Does it flip?</strong></h2>
-			<p>Market capitalization of</p>
-      <h2>ETH: <span class="text-right"><span class="display_eth_marcap number"> </span> USD</span></h2>
-      <h2>BTC: <span class="text-right"><span class="display_btc_marcap number"> </span> USD</span></h2>
-
-      <h1>ETH/BTC <strong>~<span class="display_ethbtc_pc"> </span>%</strong> <h1>
-      <p class="text-muted">or more precisely <span class="display_ethbtc_ratio" class="number"></span></p>
-			<p class="text-muted">Maximum value recorded ~<span class="display_maximumRate" class="number"></span>% the day of <span class="display_maximumRateTimestamp" > </span></p>
-
-      <p><small>Flippen.it, live data source: coinmarketcap.com<small></p>
-			<p><small>thanks to u/keaukraine from <a href="http://cryptofees.net">cryptofees.net</a></small></p>
-
-		</div>
-
-		<div id="footer">
-      <div class="col-lg-6">
-        <img src="./dolphin.png" class="img-rounded img-responsive image">
+        <h3 class="text">
+          <small>Watchening the Flippening Happening</small>
+        </h3>
       </div>
 
-			<div class="col-lg-6">
-				<div class="panel panel-default">
-	        <div class="panel-heading"><h3>Break Even Metrics</h3></div>
-	        <ul id="breakeven" class="list-group">
-						 <li class="list-group-item ">
-							 <h3>
-								 <strong><span class="display_ethbtc_24vol"></span>%</strong> ETH/BTC 24h Volume
-							 </h3>
-							 <p>Ratio of USD trading volumes vol24h(ETH) / vol24h(BTC) = <span class="display_eth_24vol_usd"></span> / <span class="display_btc_24vol_usd"></span> </p 	>
-						 </li>
-						 <li class="list-group-item "><h3><span class="display_ethbtc_price"></span> &#8658; <strong><span class="display_ethbtc_breakeven"></span> ETH/BTC</strong></h3> <strong>If the price of one Eth reaches the price of <span class="display_ethbtc_breakeven_pc"></span>% of one Bitcoin it flippened</strong> (suggested by <a href="https://www.reddit.com/user/rath3t">u/rath3t</a>). Breakeven price(ETH/BTC) ≝ supply(BTC) / supply(ETH)</li>
-						 <li class="list-group-item "><h3>ETH <strong><span class="display_eth_price"></span> </strong> &#8658; <strong><span class="display_eth_breakevenprice"></span> USD</strong></h3> to reach Bitcoin marketcap. breakeven(ETH) ≝ marcap(BTC) / supply(ETH) = <span class="display_btc_marcap number"></span> / <span class="display_eth_supply number"></span></li>
-						 <li class="list-group-item "><h3>BTC <strong><span class="display_btc_price"></span> </strong> &#8658; <strong><span class="display_btc_breakevenprice"></span> USD</strong></h3> to reach Ether marketcap. breakeven(BTC) ≝ marcap(ETH) / supply(BTC) = <span class="display_eth_marcap number"></span> / <span class="display_btc_supply number"></span></li>
-						 <li class="list-group-item "><h3>Equality: ETH <strong><span class="display_eth_eqp"></span></strong>, BTC <strong><span class="display_btc_eqp"></span></strong> USD</h3> for BTC and ETH to meet in the middle.  equalmarcap ≝ (marcap(ETH) + marcap(BTC)) / 2 = <span class="display_avg_marcap number"></span> USD. equality(BTC) ≝ equalmarcap / supply(BTC). equality(ETH) ≝ equalmarcap / supply(ETH).</li>
-						 <li class="list-group-item ">
-							 <h3>Δ Köppelmann <strong><span class="display_koeppel_diff_btc"></span> ETH/BTC</strong> (<span class="display_koeppel_diff_pc"></span>%)</h3>
-							 The Köppelmann Constant <strong><span class="display_koeppelmann"></span></strong>
-							 is the ETH/BTC rate where <em>newly created coin supply</em> for Ether PoW mining yields the same value as <em>newly created coin supply</em> by Bitcoin mining (<a href="https://www.reddit.com/r/ethtrader/comments/609xse/watch_out_for_ethbtc_price_0058333_above_that/df56k66/">Source: Köppelmann, Reddit</a>).
-							 Also, it is the ETH/BTC rate where Ether PoW expends more economic resources on PoW than Bitcoin (source: <a href="https://www.reddit.com/r/ethereum/comments/60428n/is_ethereum_about_to_overtake_bitcoin_in_terms_of/df43u6t/">V. Buterin, Reddit</a>). Another definition wouldbe: the point where one network's security is subsidized by more monetary supply. Delta Köppelman = price(ETH/BTC) - <span class="display_koeppelmann"> </span>
-							 <p><strong>Note currently not accounting for ice age blocktime increase!</strong></p>
-						 </li>
-						 <li class="list-group-item ">
-							 <h3>Δ Buterin Equilibrium <strong><span class="display_buterin_diff_btc"> </span> ETH/BTC</strong> (<span class="display_buterin_diff_pc"></span>%)</h3>
-							 <p><strong>Köppelmann constant adjusted for dynamic fees and ice age</strong> according to <a href="https://www.reddit.com/r/ethtrader/comments/685jqk/30_reached_this_is_gentlemen/dgw24cd/">suggestion by V. Buterin</a>, therefore we call it the Buterin Equilibrium, currently at <span class="display_buterin"></span> ETH/BTC. </p>
-							 <p><strong>SUBJECT TO CHANGE</strong> <a href="https://www.reddit.com/r/ethereum/comments/6cg54g/ethereum_is_now_for_the_first_time_the_blockchain/dhudlnp/">correction by u/PeenuttButler</a> Corrected currently manually. Last update 2017-05-21</p>
-						 </li>
-					</ul>
-      	</div>
-			</div>
+      <div class="alert alert-danger hidden" role="alert" id="display_nodata">
+        <h3>No Data from Coinmarketcap.com</h3>
+        <h4>Probably we have exceeded max. queries allowed from this site. Come back in a few minutes.</h4>
+      </div>
 
-		</div>
+      <div id="content" class="jumbotron">
+        <h2><strong>Does it flip?</strong></h2>
+        <p>Market capitalization of</p>
+        <h2>ETH: <span class="text-right"><span class="display_eth_marcap number"> </span> USD</span></h2>
+        <h2>BTC: <span class="text-right"><span class="display_btc_marcap number"> </span> USD</span></h2>
 
+        <h1>ETH/BTC <strong>~<span class="display_ethbtc_pc"> </span>%</strong></h1>
+        <p class="text-muted">or more precisely <span class="display_ethbtc_ratio" class="number"></span></p>
+        <p class="text-muted">
+          Maximum value recorded: ~<span class="display_maximumRate number"></span>% the day
+          of <span class="display_maximumRateTimestamp"></span>
+        </p>
 
-	</div>
+        <p class="text-muted">
+          <small>Flippen.it, live data source: coinmarketcap.com</small>
+          <br>
+          <small>Thanks to u/keaukraine from <a href="http://cryptofees.net">cryptofees.net</a></small>
+        </p>
 
+      </div>
 
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous">
-  </script>
-	<script src="//d3js.org/d3.v4.min.js"></script>
-	<script src="./src/variables.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script>
-  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-database.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script>
-	  // Initialize Firebase
-	  var config = {
-	    databaseURL: "https://theflippening.firebaseio.com/",
-	  };
-	  firebase.initializeApp(config);
+      <div id="footer">
 
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <img src="./dolphin.png" class="img-rounded img-responsive image">
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3>Break Even Metrics</h3></div>
+              <ul id="breakeven" class="list-group">
+                <li class="list-group-item ">
+                  <h3>
+                    <strong><span class="display_ethbtc_24vol"></span>%</strong> ETH/BTC 24h Volume
+                  </h3>
+                  <p>Ratio of USD trading volumes vol24h(ETH) / vol24h(BTC) = <span class="display_eth_24vol_usd"></span> / <span class="display_btc_24vol_usd"></span></p>
+                </li>
+                <li class="list-group-item "><h3><span class="display_ethbtc_price"></span> &#8658; <strong><span class="display_ethbtc_breakeven"></span> ETH/BTC</strong></h3>
+                  <strong>If the price of one Eth reaches the price of <span class="display_ethbtc_breakeven_pc"></span>% of one Bitcoin it flippened</strong> (suggested by
+                  <a href="https://www.reddit.com/user/rath3t">u/rath3t</a>). Breakeven price(ETH/BTC) ≝ supply(BTC) / supply(ETH)
+                </li>
+                <li class="list-group-item "><h3>ETH <strong><span class="display_eth_price"></span> </strong> &#8658; <strong><span class="display_eth_breakevenprice"></span> USD</strong>
+                </h3> to reach Bitcoin marketcap. breakeven(ETH) ≝ marcap(BTC) / supply(ETH) = <span class="display_btc_marcap number"></span> / <span class="display_eth_supply number"></span></li>
+                <li class="list-group-item "><h3>BTC <strong><span class="display_btc_price"></span> </strong> &#8658; <strong><span class="display_btc_breakevenprice"></span> USD</strong>
+                </h3> to reach Ether marketcap. breakeven(BTC) ≝ marcap(ETH) / supply(BTC) = <span class="display_eth_marcap number"></span> / <span class="display_btc_supply number"></span></li>
+                <li class="list-group-item "><h3>Equality: ETH <strong><span class="display_eth_eqp"></span></strong>, BTC <strong><span class="display_btc_eqp"></span></strong> USD
+                </h3> for BTC and ETH to meet in the middle. equalmarcap ≝ (marcap(ETH) + marcap(BTC)) / 2 =
+                  <span class="display_avg_marcap number"></span> USD. equality(BTC) ≝ equalmarcap / supply(BTC). equality(ETH) ≝ equalmarcap / supply(ETH).
+                </li>
+                <li class="list-group-item ">
+                  <h3>Δ Köppelmann <strong><span class="display_koeppel_diff_btc"></span> ETH/BTC</strong> (<span class="display_koeppel_diff_pc"></span>%)</h3>
+                  The Köppelmann Constant <strong><span class="display_koeppelmann"></span></strong>
+                  is the ETH/BTC rate where <em>newly created coin supply</em> for Ether PoW mining yields the same value as
+                  <em>newly created coin supply</em> by Bitcoin mining (<a href="https://www.reddit.com/r/ethtrader/comments/609xse/watch_out_for_ethbtc_price_0058333_above_that/df56k66/">Source: Köppelmann, Reddit</a>).
+                  Also, it is the ETH/BTC rate where Ether PoW expends more economic resources on PoW than Bitcoin (source:
+                  <a href="https://www.reddit.com/r/ethereum/comments/60428n/is_ethereum_about_to_overtake_bitcoin_in_terms_of/df43u6t/">V. Buterin, Reddit</a>). Another definition wouldbe: the point where one network's security is subsidized by more monetary supply. Delta Köppelman = price(ETH/BTC) -
+                  <span class="display_koeppelmann"> </span>
+                  <p><strong>Note currently not accounting for ice age blocktime increase!</strong></p>
+                </li>
+                <li class="list-group-item ">
+                  <h3>Δ Buterin Equilibrium <strong><span class="display_buterin_diff_btc"> </span> ETH/BTC</strong> (<span class="display_buterin_diff_pc"></span>%)</h3>
+                  <p><strong>Köppelmann constant adjusted for dynamic fees and ice age</strong> according to
+                    <a href="https://www.reddit.com/r/ethtrader/comments/685jqk/30_reached_this_is_gentlemen/dgw24cd/">suggestion by V. Buterin</a>, therefore we call it the Buterin Equilibrium, currently at
+                    <span class="display_buterin"></span> ETH/BTC. </p>
+                  <p><strong>SUBJECT TO CHANGE</strong>
+                    <a href="https://www.reddit.com/r/ethereum/comments/6cg54g/ethereum_is_now_for_the_first_time_the_blockchain/dhudlnp/">correction by u/PeenuttButler</a> Corrected currently manually. Last update 2017-05-21
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-		var maximumRate=0;
+        </div>
 
-    function roundPc(x){return Math.round((x + 1e-15) * 10000) / 100;}//1e-15 scaling for binary division problems
-		function round2(x){return Math.round((x + 1e-15) * 10000) / 10000;}//1e-15 scaling for binary division problems
+      </div>
+    </div>
+  </div>
 
-		var dataRef = firebase.database().ref('coinmarketcap/history');
-		var statsRef = firebase.database().ref('coinmarketcap/statistics');
-		statsRef.on('value', function (data){
-			stats = data.val();
-			$('.display_maximumRate').html(roundPc(stats.maximumRate));
-			$('.display_maximumRateTimestamp').html(moment.unix(stats.maximumRateTimestamp/1000).format("YYYY-MM-DD"));
-		});
-		dataRef.limitToLast(1).on('child_added', function(data) {
-            console.log(data);  // process results here
-						if (!data) $('#display_nodata').show();
-            else $('#display_nodata').hide();
-            stats = data.val();
-	    stats.avg_marcap = (stats.btc_marcap + stats.eth_marcap) / 2;
-            stats.eth_eqp = stats.avg_marcap / stats.eth_supply;
-            stats.btc_eqp = stats.avg_marcap / stats.btc_supply;
+</div>
 
-            $('.display_btc_marcap').html(stats.btc_marcap);
-            $('.display_eth_marcap').html(stats.eth_marcap);
-						$('.display_btc_supply').html(stats.btc_supply);
-            $('.display_eth_supply').html(stats.eth_supply);
+<script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="src/variables.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script>
+<script src="//www.gstatic.com/firebasejs/3.7.1/firebase-app.js"></script>
+<script src="//www.gstatic.com/firebasejs/3.7.1/firebase-database.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    databaseURL: "https://theflippening.firebaseio.com/",
+  };
+  firebase.initializeApp(config);
 
-            const ethbtcpercent = Math.round(stats.ethbtc * 100);
-						const ethbtcpercent2 =  roundPc(stats.ethbtc)
-						const ethbtc_24vol= roundPc(stats.eth_24h_volume_usd/ stats.btc_24h_volume_usd);
+  function roundPc(x) {
+    return Math.round((x + 1e-15) * 10000) / 100;
+  }//1e-15 scaling for binary division problems
+  function round2(x) {
+    return Math.round((x + 1e-15) * 10000) / 10000;
+  }//1e-15 scaling for binary division problems
 
-            $('.display_ethbtc_pc').html(ethbtcpercent);
-						$('.display_eth_24vol_usd').html(stats.eth_24h_volume_usd);
-						$('.display_btc_24vol_usd').html(stats.btc_24h_volume_usd);
-						$('.display_ethbtc_24vol').html(ethbtc_24vol);
-            $('.display_ethbtc_ratio').html(stats.ethbtc);
-						$('.display_eth_price').html(Math.round(stats.eth_price));
-						$('.display_btc_price').html(Math.round(stats.btc_price));
-						$('.display_eth_breakevenprice').html(Math.round(stats.eth_breakevenprice));
-						$('.display_btc_breakevenprice').html(Math.round(stats.btc_breakevenprice));
-						$('.display_avg_marcap').html(Math.round(stats.avg_marcap));
-        			                $('.display_eth_eqp').html(Math.round(stats.eth_eqp));
-			                        $('.display_btc_eqp').html(Math.round(stats.btc_eqp));
-						$('.display_koeppel_diff_btc').html(round2(stats.koeppel_diff_btc));
-						$('.display_koeppel_diff_pc').html(roundPc(stats.ethbtc_price/KOEPPELMANN));
-						$('.display_koeppelmann').html(KOEPPELMANN);
-						$('.display_buterin_diff_btc').html(round2(stats.buterin_diff_btc));
-						$('.display_buterin_diff_pc').html(roundPc(stats.ethbtc_price/BUTERIN));
-						$('.display_buterin').html(BUTERIN);
-						$('.display_ethbtc_price').html(round2(stats.ethbtc_price));
-						$('.display_ethbtc_breakeven').html(round2(stats.btc_supply/stats.eth_supply));
-						$('.display_ethbtc_breakeven_pc').html(roundPc(stats.btc_supply/stats.eth_supply));
-						$(document).prop('title', ethbtcpercent2+'% Flipper | Watchening Ethereum Flippening Happening');
+  var dataRef = firebase.database().ref('coinmarketcap/history');
+  var statsRef = firebase.database().ref('coinmarketcap/statistics');
+  var stats;
 
+  statsRef.on('value', function (data) {
+    stats = data.val();
+    $('.display_maximumRate').html(roundPc(stats.maximumRate));
+    $('.display_maximumRateTimestamp').html(moment.unix(stats.maximumRateTimestamp / 1000).format("YYYY-MM-DD"));
+  });
 
-            $('.number').text(function () {
-                var str = $(this).html() + '';
-                x = str.split('.');
-                x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : '';
-                var rgx = /(\d+)(\d{3})/;
-                while (rgx.test(x1)) {
-                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
-                }
-                $(this).html(x1 + x2);
-            });
+  dataRef.limitToLast(1).on('child_added', function (data) {
+    console.log(data);  // process results here
 
+    if (!data) {
+      $('#display_nodata').show();
+    } else {
+      $('#display_nodata').hide();
+    }
 
+    stats = data.val();
+    stats.avg_marcap = (stats.btc_marcap + stats.eth_marcap) / 2;
+    stats.eth_eqp = stats.avg_marcap / stats.eth_supply;
+    stats.btc_eqp = stats.avg_marcap / stats.btc_supply;
 
+    $('.display_btc_marcap').html(stats.btc_marcap);
+    $('.display_eth_marcap').html(stats.eth_marcap);
+    $('.display_btc_supply').html(stats.btc_supply);
+    $('.display_eth_supply').html(stats.eth_supply);
+
+    const ethbtcpercent = Math.round(stats.ethbtc * 100);
+    const ethbtcpercent2 = roundPc(stats.ethbtc)
+    const ethbtc_24vol = roundPc(stats.eth_24h_volume_usd / stats.btc_24h_volume_usd);
+
+    $('.display_ethbtc_pc').html(ethbtcpercent);
+    $('.display_eth_24vol_usd').html(stats.eth_24h_volume_usd);
+    $('.display_btc_24vol_usd').html(stats.btc_24h_volume_usd);
+    $('.display_ethbtc_24vol').html(ethbtc_24vol);
+    $('.display_ethbtc_ratio').html(stats.ethbtc);
+    $('.display_eth_price').html(Math.round(stats.eth_price));
+    $('.display_btc_price').html(Math.round(stats.btc_price));
+    $('.display_eth_breakevenprice').html(Math.round(stats.eth_breakevenprice));
+    $('.display_btc_breakevenprice').html(Math.round(stats.btc_breakevenprice));
+    $('.display_avg_marcap').html(Math.round(stats.avg_marcap));
+    $('.display_eth_eqp').html(Math.round(stats.eth_eqp));
+    $('.display_btc_eqp').html(Math.round(stats.btc_eqp));
+    $('.display_koeppel_diff_btc').html(round2(stats.koeppel_diff_btc));
+    $('.display_koeppel_diff_pc').html(roundPc(stats.ethbtc_price / KOEPPELMANN));
+    $('.display_koeppelmann').html(KOEPPELMANN);
+    $('.display_buterin_diff_btc').html(round2(stats.buterin_diff_btc));
+    $('.display_buterin_diff_pc').html(roundPc(stats.ethbtc_price / BUTERIN));
+    $('.display_buterin').html(BUTERIN);
+    $('.display_ethbtc_price').html(round2(stats.ethbtc_price));
+    $('.display_ethbtc_breakeven').html(round2(stats.btc_supply / stats.eth_supply));
+    $('.display_ethbtc_breakeven_pc').html(roundPc(stats.btc_supply / stats.eth_supply));
+    $(document).prop('title', ethbtcpercent2 + '% Flipper | Watchening Ethereum Flippening Happening');
+
+    $('.number').text(function () {
+      var str = $(this).html() + '';
+      x = str.split('.');
+      x1 = x[0];
+      x2 = x.length > 1 ? '.' + x[1] : '';
+      var rgx = /(\d+)(\d{3})/;
+      while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+      }
+      $(this).html(x1 + x2);
     });
-    //doPoll();
+
+  });
+  //doPoll();
 </script>
 
 </body>

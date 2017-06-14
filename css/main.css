@@ -1,19 +1,20 @@
 .image {
-
-    -webkit-animation:spin 6000s linear infinite;
-    -moz-animation:spin 6000s linear infinite;
-    animation:spin 6000s linear infinite;
-    transform-origin: 70% 80%;
+  margin: 0 auto;
+  -webkit-animation:spin 6000s linear infinite;
+  -moz-animation:spin 6000s linear infinite;
+  animation:spin 6000s linear infinite;
+  transform-origin: 70% 80%;
 }
+
 @-moz-keyframes spin { 100% { -moz-transform: rotate(-360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(-360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
 
 .watermark {
-    position: absolute;
-    opacity: 0.25;
-    font-size: 3em;
-    width: 100%;
-    text-align: center;
-    z-index: 1000;
+  position: absolute;
+  opacity: 0.25;
+  font-size: 3em;
+  width: 100%;
+  text-align: center;
+  z-index: 1000;
 }
