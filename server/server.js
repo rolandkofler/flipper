@@ -31,8 +31,15 @@ var poller = function doPoll(){
      });
    };
 
+function equalsWithMarginOfError(actual, expected, error){
 
-const TIME= 60 * 1000 * 5; // 5 minutes
+  const diff = actual-expected;
+  console.log("Equals with Error: ", actual, expected, diff, error);
+  return Math.abs(diff) < error;
+}
+
+const TIME= 60 * 1000 ; // 5 minutes
+const ERRORMARGIN = 0.0000999;
 poller(); // do first run immediately
 setInterval(poller, TIME); // then start polling
 
@@ -44,7 +51,11 @@ function writeData(data) {
   const btc = (data).filter((i,n) => i.id==="bitcoin")[0];
   const eth = (data).filter((i,n) => i.id==="ethereum")[0];
 
-  if(last_updated_BTC != btc.last_updated || last_updated_ETH != eth.last_updated) {
+  // just trigger it the first time
+  if (!last_updated_BTC) last_updated_BTC = btc.market_cap_usd+ ERRORMARGIN;
+  if (!last_updated_ETH) last_updated_ETH = eth.market_cap_usd;
+
+  if(!equalsWithMarginOfError(last_updated_ETH/last_updated_BTC, eth.market_cap_usd/btc.market_cap_usd, ERRORMARGIN)){
       stats.btc_marcap = Number(btc.market_cap_usd);
       stats.eth_marcap = Number(eth.market_cap_usd);
       stats.btc_24h_volume_usd =Number(btc["24h_volume_usd"]);
@@ -72,15 +83,15 @@ function writeData(data) {
            );
          }
        });
-
+      last_updated_BTC = btc.market_cap_usd;
+      last_updated_ETH = eth.market_cap_usd;
       console.log("history will be added", stats);
-       historyRef.push().set(stats);
+      historyRef.push().set(stats);
     } else {
         console.log("data from API hasn't changed");
     }
 
-    last_updated_BTC = btc.last_updated;
-    last_updated_ETH = eth.last_updated;
+
 }
 
 
